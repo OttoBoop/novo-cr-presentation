@@ -1,0 +1,16 @@
+{
+  "nota_final": 6.0,
+  "questoes": [
+    {"numero": 1, "nota": 0.75, "nota_maxima": 1.5, "acerto": false, "feedback": "Q1a: conclusão correta de descontinuidade de f', mas a justificativa mistura conceitos. Q1b: regra da cadeia aplicada com erro de consistência; revisar f'(0) pela cadeia e pela definição de f para x ≤ 2."},
+    {"numero": 2, "nota": 0.75, "nota_maxima": 1.0, "acerto": true, "feedback": "Q2a: correto que y = 4x+2x^2 não satisfaz a edp. Q2b: coeficientes incorretos; refazer com y'' - y' + y = 2x^2+1: 2C - B + A = 1, B - 2C = 0, C = 2 -> B = 4, A = 1."},
+    {"numero": 3, "nota": 1.0, "nota_maxima": 1.5, "acerto": true, "feedback": "Q3a: gráfico em V com vértice em (0,4), constante 4 para -2≤x≤2. Q3b: f'(-1)=0. Q3c: differentiável exceto -2 e 2."},
+    {"numero": 4, "nota": 0.75, "nota_maxima": 1.0, "acerto": false, "feedback": "Q4a: cálculo da derivada da razão está quase completo; falta transcrição final da reta tangente. Q4b: correto encontrar pontos de paralelismo."},
+    {"numero": 5, "nota": 0.0, "nota_maxima": 1.0, "acerto": false, "feedback": "Resposta do item 5 está ilegível na transcrição; sem conteúdo legível para avaliação."},
+    {"numero": 6, "nota": 0.75, "nota_maxima": 1.0, "acerto": true, "feedback": "Q6a: expressão correta para F'(x). Q6b: suposição incorreta de f(1); não há suporte no enunciado."},
+    {"numero": 7, "nota": 1.25, "nota_maxima": 1.5, "acerto": true, "feedback": "Q7a: y=0; Q7b: derivação implícita correta; Q7c: y'' calculado com erro."},
+    {"numero": 8, "nota": 1.5, "nota_maxima": 1.5, "acerto": true, "feedback": "f(0) = π/4; f'(0) = 1; tangente e normal corretas."}
+  ],
+  "total_acertos": 6,
+  "total_erros": 2,
+  "feedback_geral": "O aluno demonstra domínio considerável de cálculo diferencial com bons resultados, identificando corretamente os pontos-chave. Houve alguns equívocos em justificativas (Q1, Q4) e uma área de incerteza/ilegibilidade (Q5). Recomenda-se revisar cadeia de funções e consistência nas substituições ao lidar com equações diferenciais, bem como confirmar suposições não explícitas (Q6b)."
+}
