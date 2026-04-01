@@ -20,12 +20,14 @@ OUTPUT = BASE / "NOVO_CR_Apresentacao_v3.pptx"
 # === GITHUB LINKS ===
 REPO_BASE = "https://github.com/OttoBoop/novo-cr-presentation/blob/main"
 REPORT_LINKS = {
+    # Individual-level: Cálculo 1 / Otávio
     "01_correcao_otavio.pdf": f"{REPO_BASE}/reports/01_correcao_otavio.pdf",
     "02_analise_habilidades_otavio.pdf": f"{REPO_BASE}/reports/02_analise_habilidades_otavio.pdf",
     "03_relatorio_final_otavio.pdf": f"{REPO_BASE}/reports/03_relatorio_final_otavio.pdf",
-    "04_desempenho_tarefa.pdf": f"{REPO_BASE}/reports/04_desempenho_tarefa.pdf",
-    "05_desempenho_turma.pdf": f"{REPO_BASE}/reports/05_desempenho_turma.pdf",
-    "06_desempenho_materia.pdf": f"{REPO_BASE}/reports/06_desempenho_materia.pdf",
+    # Aggregate-level: Matemática-V (richer data, multiple turmas)
+    "04_desempenho_tarefa_matv.pdf": f"{REPO_BASE}/reports/04_desempenho_tarefa_matv.pdf",
+    "05_desempenho_turma_matv.pdf": f"{REPO_BASE}/reports/05_desempenho_turma_matv.pdf",
+    "06_desempenho_materia_matv.pdf": f"{REPO_BASE}/reports/06_desempenho_materia_matv.pdf",
 }
 LIVE_SITE = "https://ia-educacao-v2.onrender.com"
 
@@ -515,9 +517,9 @@ add_hyperlink_textbox(slide, Inches(0.8), Inches(6.2), Inches(6), Inches(0.4),
                       "→ Ver relatório completo: 01_correcao_otavio.pdf",
                       REPORT_LINKS["01_correcao_otavio.pdf"], font_size=14)
 
-# Desempenho Tarefa with real data
+# Desempenho Tarefa with real data — Matemática-V
 desemp_data = {}
-desemp_json = REPORTS / "04_desempenho_tarefa.json"
+desemp_json = REPORTS / "04_desempenho_tarefa_matv.json"
 if desemp_json.exists():
     with open(desemp_json, "r", encoding="utf-8") as f:
         desemp_data = json.load(f)
@@ -551,17 +553,71 @@ add_multiline(slide, Inches(0.9), Inches(1.5), Inches(11.3), Inches(1.8), [
 
 # Implications
 add_multiline(slide, Inches(0.8), Inches(3.8), Inches(11.5), Inches(2.5), [
-    ("Implicações pedagógicas geradas pela IA:", True, FGV_BLUE),
+    ("Diagnóstico gerado pela IA:", True, FGV_BLUE),
     "",
-    "  1.  Reservar tempo para leitura e análise detalhada de enunciados",
-    "  2.  Organizar oficinas de escrita formal de provas matemáticas",
-    "  3.  Promover correções comentadas e devolutivas rápidas",
+    "  Turma em transição entre domínio operacional e formalização.",
+    "  Excelência consolidada em alguns alunos vs. deficiências estruturais em outros.",
+    "  Competência conceitual mascarada por deficiências em documentação.",
 ], font_size=15)
 
 # Real clickable hyperlink
 add_hyperlink_textbox(slide, Inches(0.8), Inches(6.2), Inches(6), Inches(0.4),
-                      "→ Ver relatório completo: 04_desempenho_tarefa.pdf",
-                      REPORT_LINKS["04_desempenho_tarefa.pdf"], font_size=14)
+                      "→ Ver relatório completo: Desempenho Tarefa (Matemática-V)",
+                      REPORT_LINKS["04_desempenho_tarefa_matv.pdf"], font_size=14)
+
+# --- Desempenho Matéria slide (cross-turma) with real data ---
+materia_data = {}
+materia_json = REPORTS / "06_desempenho_materia_matv.json"
+if materia_json.exists():
+    with open(materia_json, "r", encoding="utf-8") as f:
+        materia_data = json.load(f)
+
+materia_raw = materia_data.get("resposta_raw", "")
+# Extract the "Panorama" section
+mat_sections = materia_raw.split("##")
+panorama = ""
+for s in mat_sections:
+    if "PANORAMA" in s.upper() or "Estado do Aprendizado" in s:
+        lines = s.strip().split("\n")
+        # Get content after the title
+        content_lines = [l for l in lines[1:] if l.strip() and not l.strip().startswith("---")]
+        panorama = "\n".join(content_lines[:6])
+        break
+
+slide = prs.slides.add_slide(prs.slide_layouts[6])
+add_bg(slide, FGV_WHITE)
+add_shape(slide, Inches(0), Inches(0), W, Inches(0.08), FGV_BLUE)
+add_textbox(slide, Inches(0.8), Inches(0.3), Inches(11), Inches(0.8),
+            "Desempenho por Matéria — Análise Cross-Turma", font_size=30,
+            color=FGV_DARK_BLUE, bold=True)
+add_shape(slide, Inches(0.8), Inches(1.05), Inches(3), Inches(0.04), FGV_LIGHT_BLUE)
+
+# Quote box
+add_shape(slide, Inches(0.6), Inches(1.3), Inches(12), Inches(2.4), FGV_LIGHT_GRAY)
+add_shape(slide, Inches(0.6), Inches(1.3), Inches(0.06), Inches(2.4), FGV_BLUE)
+
+add_multiline(slide, Inches(0.9), Inches(1.5), Inches(11.3), Inches(2.0), [
+    ("Trecho real — Síntese Cross-Turma (Matemática-V):", True, FGV_BLUE),
+    "",
+    ('Matemática-V apresenta um quadro misto e polarizado. O aprendizado não é', False, FGV_DARK_GRAY),
+    ('uniforme: há alunos com domínio excepcional, mas também alunos com deficiências', False, FGV_DARK_GRAY),
+    ('estruturais significativas.', False, FGV_DARK_GRAY),
+], font_size=14)
+
+# Table-like comparison
+add_multiline(slide, Inches(0.8), Inches(4.0), Inches(11.5), Inches(2.2), [
+    ("Comparação entre turmas (gerada automaticamente):", True, FGV_BLUE),
+    "",
+    ("Alpha-V:  Média Álgebra 6.63  |  Média Geometria 6.88  |  Polarizado", False, FGV_DARK_GRAY),
+    ("Beta-V:   Média Álgebra ~5.6   |  Média Geometria ~5.95  |  Intermediário", False, FGV_DARK_GRAY),
+    "",
+    ("Diagnóstico: não é um problema de capacidade cognitiva geral, mas de lacunas", True, FGV_DARK_BLUE),
+    ("específicas, falta de metodologia, e deficiências em comunicação matemática.", True, FGV_DARK_BLUE),
+], font_size=14)
+
+add_hyperlink_textbox(slide, Inches(0.8), Inches(6.5), Inches(8), Inches(0.4),
+                      "→ Ver relatório completo: Desempenho Matéria (Matemática-V)",
+                      REPORT_LINKS["06_desempenho_materia_matv.pdf"], font_size=14)
 
 # Summary table slide
 slide = prs.slides.add_slide(prs.slide_layouts[6])
@@ -577,9 +633,9 @@ levels = [
     ("Questão", "Correção", "Raciocínio, tipo de erro, potencial", "01_correcao_otavio.pdf"),
     ("Aluno", "Análise de Habilidades", "Perfil cognitivo, padrões, recomendações", "02_analise_habilidades_otavio.pdf"),
     ("Aluno", "Relatório Final", "Narrativa completa para aluno e pais", "03_relatorio_final_otavio.pdf"),
-    ("Turma × Atividade", "Desempenho Tarefa", "Padrões coletivos, exemplos específicos", "04_desempenho_tarefa.pdf"),
-    ("Turma", "Desempenho Turma", "Evolução ao longo do tempo", "05_desempenho_turma.pdf"),
-    ("Matéria", "Desempenho Matéria", "Eficácia do currículo entre turmas", "06_desempenho_materia.pdf"),
+    ("Turma × Atividade", "Desempenho Tarefa", "Padrões coletivos, exemplos específicos", "04_desempenho_tarefa_matv.pdf"),
+    ("Turma", "Desempenho Turma", "Evolução ao longo do tempo", "05_desempenho_turma_matv.pdf"),
+    ("Matéria", "Desempenho Matéria", "Eficácia do currículo entre turmas", "06_desempenho_materia_matv.pdf"),
 ]
 
 y_start = Inches(1.4)

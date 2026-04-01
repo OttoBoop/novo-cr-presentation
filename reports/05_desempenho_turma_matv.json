@@ -1,0 +1,54 @@
+{
+  "resumo_evolucao": "A turma Alpha-V (2 alunos) apresenta um padrão claro de polarização: Ana Verifica mantém desempenho excepcional e consistente (9.5/10 em Álgebra, 10.0/10 em Geometria), enquanto Bruno Verifica apresenta desempenho frágil e inconsistente (3.75/10 em ambas as atividades). Não houve evolução longitudinal significativa para Bruno entre as duas provas — os mesmos padrões de erro (incompletude de procedimentos, lacunas conceituais específicas, falta de verificação sistemática) persistem de Álgebra para Geometria. Ana, por sua vez, demonstra consolidação de competências: não apenas domina procedimentos, mas integra múltiplos conceitos e justifica raciocínios com rigor matemático.",
+  "tendencia_geral": "Turma de desempenho EXTREMAMENTE POLARIZADO. Sem alunos em zona intermediária. A turma não funciona como coletivo de aprendizado — é composta por dois perfis distintos que requerem estratégias pedagógicas radicalmente diferentes. Tendência geral: ESTAGNAÇÃO para Bruno, CONSOLIDAÇÃO para Ana. Não há evidência de que a turma como um todo está progredindo; há evidência de que está se dividindo.",
+  "atividades_analisadas": ["Prova Álgebra-V", "Prova Geometria-V"],
+  "alunos_destaque": [
+    {
+      "aluno_id": "54e3e7758928f5b7",
+      "nome": "Ana Verifica",
+      "motivo": "Desempenho excepcional e consistente em ambas as atividades (9.5/10 e 10.0/10). Domina não apenas procedimentos, mas integra conceitos (ex: Teorema de Pitágoras em classificação de triângulos). Pensamento matemático sofisticado com raciocínio analítico integrado. Pronta para desafios extracurriculares e aprofundamento teórico."
+    }
+  ],
+  "alunos_atencao": [
+    {
+      "aluno_id": "a4a4933fedbfc8fd",
+      "nome": "Bruno Verifica",
+      "motivo": "Desempenho crítico em ambas as atividades (3.75/10 em Álgebra e Geometria). Padrão persistente de: (1) execução incompleta de procedimentos, (2) lacunas conceituais específicas não remediadas entre atividades, (3) falta de verificação sistemática. Não há evidência de progresso entre Álgebra e Geometria. Requer intervenção intensiva e individualizada com foco em consolidação de procedimentos e compreensão conceitual."
+    }
+  ],
+  "padroes_turma": [
+    "POLARIZAÇÃO EXTREMA: Dois perfis completamente distintos sem intermediários. Ana está em nível avançado; Bruno está em nível crítico. A turma não tem um 'jeito de aprender' unificado.",
+    "ESTAGNAÇÃO DE BRUNO: Os mesmos erros que aparecem em Álgebra (incompletude de procedimentos, bloqueios conceituais, falta de documentação) reaparecem idênticos em Geometria. Nenhuma melhoria detectada entre as duas atividades.",
+    "CONSOLIDAÇÃO DE ANA: Não apenas mantém desempenho alto, mas evolui em sofisticação — passa de domínio de procedimentos isolados para integração de múltiplos conceitos e justificativas rigorosas.",
+    "LACUNAS CONCEITUAIS PERSISTENTES EM BRUNO: Específicas e identificáveis: (1) Distributividade com sinais negativos em Álgebra; (2) Confusão 2D/3D e classificação de triângulos em Geometria. Não são erros aleatórios; são padrões sistemáticos.",
+    "DEFICIÊNCIA EM HÁBITOS DE APRENDIZADO EM BRUNO: Não é apenas conhecimento fragmentado, mas ausência de rotinas de verificação, documentação sistemática e validação de respostas. Estes hábitos não foram desenvolvidos entre as duas atividades.",
+    "COMUNICAÇÃO MATEMÁTICA CLARA EM AMBOS: Ambos os alunos estruturam respostas de forma organizada, incluem unidades e tentam justificar. A diferença não está em comunicação, mas em completude conceitual e procedimental."
+  ],
+  "recomendacoes": [
+    {
+      "tipo": "Intervenção Individualizada — Bruno",
+      "descricao": "Implementar programa de intervenção intensiva de 4-6 semanas com foco em: (1) Checklist não-negociável de etapas para cada procedimento (não confiar em memória); (2) Reensino com materiais concretos para 2D vs 3D (cubos, blocos, malhas); (3) Revisão intensiva de distributividade com sinais negativos (10 exercícios focados); (4) Rotina obrigatória de verificação: reler fórmula, conferir unidades, refazer cálculo. Frequência: 3x por semana, 45 min cada. Reavaliação ao final das 4 semanas.",
+      "prioridade": "CRÍTICA"
+    },
+    {
+      "tipo": "Enriquecimento e Desafio — Ana",
+      "descricao": "Oferecer problemas integrados que combinem múltiplas figuras geométricas, introduzir sólidos complexos (pirâmides, cones, esferas), explorar demonstrações formais de teoremas e considerando geometria analítica. Estimular participação em olimpíadas de matemática (OBMEP, Canguru). Criar espaço para investigações matemáticas independentes. Ana não deve ficar em espera enquanto Bruno recebe intervenção.",
+      "prioridade": "ALTA"
+    },
+    {
+      "tipo": "Reorganização Pedagógica — Diferenciação Estrutural",
+      "descricao": "A turma de 2 alunos com desempenho extremamente polarizado não beneficia de ensino unificado. Estruturar aulas com: (1) Núcleo comum (15-20 min) para apresentação de conceitos; (2) Estações de trabalho diferenciadas: Ana em problemas desafiadores/integrados, Bruno em consolidação procedimental com checklist; (3) Encontros individuais semanais com Bruno para monitorar progresso em lacunas específicas. Esta estrutura é viável com 2 alunos e necessária para evitar que Bruno fique ainda mais para trás.",
+      "prioridade": "ALTA"
+    },
+    {
+      "tipo": "Diagnóstico de Raízes — Por que Bruno não progride?",
+      "descricao": "Investigar causas subjacentes da estagnação de Bruno: (1) Dificuldades de aprendizado não-diagnosticadas? (2) Falta de confiança/mentalidade de crescimento? (3) Deficiências em pré-requisitos (operações básicas, compreensão de variáveis)? (4) Problemas de atenção/concentração? Aplicar avaliação diagnóstica em pré-requisitos (operações com números inteiros, compreensão de fórmulas básicas). Conversa individual com Bruno sobre atitude frente a dificuldades. Envolver responsáveis para entender contexto familiar.",
+      "prioridade": "ALTA"
+    },
+    {
+      "tipo": "Monitoramento Longitudinal — Evitar Cristalização",
+      "descricao": "Risco pedagógico: Bruno pode cristalizar-se em padrão de baixo desempenho se não houver intervenção rápida. Ana pode desmotivar-se se não receber desafios. Estabelecer calendário de reavaliações a cada 3 semanas (não apenas ao final de unidades). Usar dados de reavaliação para ajustar intervenções. Objetivo: detectar progresso incremental em Bruno (mesmo que pequeno) e oferecer feedback positivo. Evitar que a polarização se torne irreversível.",
+      "prioridade": "ALTA"
+    }
+  ]
+}
