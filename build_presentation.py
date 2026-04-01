@@ -28,6 +28,8 @@ REPORT_LINKS = {
     "04_desempenho_tarefa_matv.pdf": f"{REPO_BASE}/reports/04_desempenho_tarefa_matv.pdf",
     "05_desempenho_turma_matv.pdf": f"{REPO_BASE}/reports/05_desempenho_turma_matv.pdf",
     "06_desempenho_materia_matv.pdf": f"{REPO_BASE}/reports/06_desempenho_materia_matv.pdf",
+    # Longitudinal report (chat-generated, not yet automated)
+    "07_relatorio_longitudinal_otavio.pdf": f"{REPO_BASE}/reports/07_relatorio_longitudinal_otavio.pdf",
 }
 LIVE_SITE = "https://ia-educacao-v2.onrender.com"
 
@@ -342,6 +344,58 @@ content_slide("Flexibilidade Multi-Provedor", [
     "Pesquisadores podem comparar resultados entre provedores.",
 ])
 
+# --- FUNDING SLIDE A ---
+content_slide("O Próximo Passo: Métricas de Custo e Qualidade", [
+    ("Múltiplos modelos existem. Qual é o melhor para cada tarefa?", True, FGV_DARK_BLUE),
+    "",
+    "Cada etapa do pipeline tem exigências diferentes:",
+    "   •  Extração de questões: precisa de precisão estrutural",
+    "   •  Correção narrativa: precisa de profundidade analítica",
+    "   •  Relatórios de desempenho: precisa de síntese e visão ampla",
+    "",
+    ("O modelo ideal pode ser diferente em cada etapa.", True, FGV_BLUE),
+    ("E o custo varia dramaticamente entre provedores.", True, FGV_BLUE),
+    "",
+    "Meta até o final do ano: entregar às escolas estimativas",
+    "reais de custo para executar o pipeline completo.",
+])
+
+# --- FUNDING SLIDE B ---
+content_slide("O Que Precisamos Explorar", [
+    ("Objetivo do financiamento:", True, FGV_DARK_BLUE),
+    "",
+    ("1.  Criar métricas de qualidade", True, FGV_BLUE),
+    "   Comparar outputs de cada modelo em cada etapa do pipeline.",
+    "   Medir: precisão, profundidade narrativa, coerência pedagógica.",
+    "",
+    ("2.  Explorar combinações de modelos", True, FGV_BLUE),
+    "   Modelo A pode ser mais barato para extração,",
+    "   mas pior para qualidade narrativa. Testar milhares de combinações.",
+    "",
+    ("3.  Melhorar outputs em todos os provedores", True, FGV_BLUE),
+    "   Quanto mais financiamento, melhor a exploração de alternativas.",
+    "   Cada crédito de API se traduz em dados comparativos reais.",
+])
+
+# --- CHAT FOR STUDENTS SLIDE ---
+content_slide("Chat: O Aluno Entende Suas Notas", [
+    ("O aluno pode conversar com a IA sobre suas provas.", True, FGV_DARK_BLUE),
+    "",
+    "A funcionalidade de chat permite que o aluno:",
+    "",
+    "   •  Entenda os erros que cometeu — por que perdeu pontos",
+    "   •  Explore o feedback da correção em profundidade",
+    "   •  Pergunte sobre conceitos que não dominou",
+    "",
+    ("Se discordar da nota?", True, FGV_BLUE),
+    "   O aluno pode usar evidências da conversa para fundamentar",
+    "   um pedido de revisão ao professor — acelerando o processo",
+    "   que normalmente envolve filas, e-mails e reuniões.",
+    "",
+    ("Transparência para todos: professor vê o que a IA fez,", True, FGV_MED_GRAY),
+    ("aluno vê por que recebeu aquela nota.", True, FGV_MED_GRAY),
+])
+
 
 # =====================================================================
 # SECTION 2: PIPELINE WALKTHROUGH
@@ -619,6 +673,45 @@ add_hyperlink_textbox(slide, Inches(0.8), Inches(6.5), Inches(8), Inches(0.4),
                       "→ Ver relatório completo: Desempenho Matéria (Matemática-V)",
                       REPORT_LINKS["06_desempenho_materia_matv.pdf"], font_size=14)
 
+# --- LONGITUDINAL REPORT SLIDE ---
+slide = prs.slides.add_slide(prs.slide_layouts[6])
+add_bg(slide, FGV_WHITE)
+add_shape(slide, Inches(0), Inches(0), W, Inches(0.08), FGV_BLUE)
+add_textbox(slide, Inches(0.8), Inches(0.3), Inches(11), Inches(0.8),
+            "Relatório Longitudinal — A Jornada do Aluno", font_size=30,
+            color=FGV_DARK_BLUE, bold=True)
+add_shape(slide, Inches(0.8), Inches(1.05), Inches(3), Inches(0.04), FGV_LIGHT_BLUE)
+
+# Quote box from real report
+add_shape(slide, Inches(0.6), Inches(1.3), Inches(12), Inches(1.6), FGV_LIGHT_GRAY)
+add_shape(slide, Inches(0.6), Inches(1.3), Inches(0.06), Inches(1.6), FGV_BLUE)
+
+add_multiline(slide, Inches(0.9), Inches(1.4), Inches(11.3), Inches(1.4), [
+    ("Relatório real — 7 páginas, 9 disciplinas, 4 anos (2021-2025):", True, FGV_BLUE),
+    ('"Otávio demonstra trajetória acadêmica caracterizada por excelência técnica crescente,', False, FGV_DARK_GRAY),
+    ('com evolução de fundamentos matemáticos para aplicações sofisticadas. Fragilidades', False, FGV_DARK_GRAY),
+    ('persistentes em rigor teórico representam um teto de vidro corrigível."', False, FGV_DARK_GRAY),
+], font_size=14)
+
+add_multiline(slide, Inches(0.8), Inches(3.2), Inches(5.8), Inches(3.5), [
+    ("O que o relatório longitudinal rastreia:", True, FGV_BLUE),
+    "",
+    "   •  Evolução de competências ao longo dos anos",
+    "       Técnica: 7→9  |  Programação: 5→8.5  |  Rigor: 4→5",
+    "   •  Padrões persistentes entre disciplinas",
+    '       "Executor competente, verificador negligente"',
+    "   •  Comparação com perfil típico de aluno da EPGE",
+    "   •  Recomendações estratégicas para aluno e orientadores",
+    "",
+    ("Visão do aluno: trabalho em progresso.", True, ACCENT_GREEN),
+    ("Criado via chat, usando dados de todas as correções.", False, FGV_MED_GRAY),
+    ("Automação completa é o próximo marco.", False, FGV_MED_GRAY),
+], font_size=14)
+
+add_hyperlink_textbox(slide, Inches(0.8), Inches(6.8), Inches(8), Inches(0.4),
+                      "→ Ver relatório completo: Relatório Longitudinal (7 páginas)",
+                      REPORT_LINKS["07_relatorio_longitudinal_otavio.pdf"], font_size=14)
+
 # Summary table slide
 slide = prs.slides.add_slide(prs.slide_layouts[6])
 add_bg(slide, FGV_WHITE)
@@ -636,6 +729,7 @@ levels = [
     ("Turma × Atividade", "Desempenho Tarefa", "Padrões coletivos, exemplos específicos", "04_desempenho_tarefa_matv.pdf"),
     ("Turma", "Desempenho Turma", "Evolução ao longo do tempo", "05_desempenho_turma_matv.pdf"),
     ("Matéria", "Desempenho Matéria", "Eficácia do currículo entre turmas", "06_desempenho_materia_matv.pdf"),
+    ("Longitudinal", "Relatório Longitudinal", "Jornada do aluno ao longo dos anos", "07_relatorio_longitudinal_otavio.pdf"),
 ]
 
 y_start = Inches(1.4)
