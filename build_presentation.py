@@ -7,6 +7,7 @@ from pptx.util import Inches, Pt, Emu
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.enum.shapes import MSO_SHAPE
+from pptx.oxml.ns import qn
 from pathlib import Path
 import json
 
@@ -14,7 +15,19 @@ import json
 BASE = Path(__file__).parent
 SCREENSHOTS = BASE / "screenshots"
 REPORTS = BASE / "reports"
-OUTPUT = BASE / "NOVO_CR_Apresentacao_v2.pptx"
+OUTPUT = BASE / "NOVO_CR_Apresentacao_v3.pptx"
+
+# === GITHUB LINKS ===
+REPO_BASE = "https://github.com/OttoBoop/novo-cr-presentation/blob/main"
+REPORT_LINKS = {
+    "01_correcao_otavio.pdf": f"{REPO_BASE}/reports/01_correcao_otavio.pdf",
+    "02_analise_habilidades_otavio.pdf": f"{REPO_BASE}/reports/02_analise_habilidades_otavio.pdf",
+    "03_relatorio_final_otavio.pdf": f"{REPO_BASE}/reports/03_relatorio_final_otavio.pdf",
+    "04_desempenho_tarefa.pdf": f"{REPO_BASE}/reports/04_desempenho_tarefa.pdf",
+    "05_desempenho_turma.pdf": f"{REPO_BASE}/reports/05_desempenho_turma.pdf",
+    "06_desempenho_materia.pdf": f"{REPO_BASE}/reports/06_desempenho_materia.pdf",
+}
+LIVE_SITE = "https://ia-educacao-v2.onrender.com"
 
 # === FGV-APPROXIMATE COLORS ===
 FGV_DARK_BLUE = RGBColor(0x00, 0x2B, 0x5C)    # Deep navy
@@ -89,6 +102,22 @@ def add_multiline(slide, left, top, width, height, lines, font_size=16,
         p.font.bold = bold
         p.font.name = font_name
         p.space_after = Pt(font_size * (line_spacing - 1) * 2)
+    return txBox
+
+def add_hyperlink_textbox(slide, left, top, width, height, text, url,
+                          font_size=14, font_name="Segoe UI"):
+    """Add a text box with a clickable hyperlink."""
+    txBox = slide.shapes.add_textbox(left, top, width, height)
+    tf = txBox.text_frame
+    tf.word_wrap = True
+    p = tf.paragraphs[0]
+    run = p.add_run()
+    run.text = text
+    run.font.size = Pt(font_size)
+    run.font.color.rgb = FGV_LIGHT_BLUE
+    run.font.underline = True
+    run.font.name = font_name
+    run.hyperlink.address = url
     return txBox
 
 def add_image_safe(slide, path, left, top, width=None, height=None):
@@ -190,10 +219,9 @@ add_textbox(slide, Inches(2), Inches(4.6), Inches(9), Inches(1.2),
             font_size=20, color=RGBColor(0xAA, 0xBB, 0xCC),
             alignment=PP_ALIGN.CENTER)
 
-# URL
-add_textbox(slide, Inches(2), Inches(6.2), Inches(9), Inches(0.5),
-            "ia-educacao-v2.onrender.com", font_size=14,
-            color=FGV_LIGHT_BLUE, alignment=PP_ALIGN.CENTER)
+# URL — clickable
+add_hyperlink_textbox(slide, Inches(2), Inches(6.2), Inches(9), Inches(0.5),
+                      "ia-educacao-v2.onrender.com", LIVE_SITE, font_size=14)
 
 
 # =====================================================================
@@ -477,12 +505,15 @@ corr_lines.extend([
     "",
     ("Feedback geral:", True, FGV_BLUE),
     (correcao_data.get("feedback_geral", "")[:200] + "...", False, FGV_MED_GRAY),
-    "",
-    ("→ Ver relatório completo: 01_correcao_otavio.pdf", False, FGV_LIGHT_BLUE),
 ])
 
-add_multiline(slide, Inches(0.8), Inches(1.3), Inches(11.5), Inches(5.5),
+add_multiline(slide, Inches(0.8), Inches(1.3), Inches(11.5), Inches(4.8),
               corr_lines, font_size=14)
+
+# Real clickable hyperlink to PDF
+add_hyperlink_textbox(slide, Inches(0.8), Inches(6.2), Inches(6), Inches(0.4),
+                      "→ Ver relatório completo: 01_correcao_otavio.pdf",
+                      REPORT_LINKS["01_correcao_otavio.pdf"], font_size=14)
 
 # Desempenho Tarefa with real data
 desemp_data = {}
@@ -519,15 +550,18 @@ add_multiline(slide, Inches(0.9), Inches(1.5), Inches(11.3), Inches(1.8), [
 ], font_size=14)
 
 # Implications
-add_multiline(slide, Inches(0.8), Inches(3.8), Inches(11.5), Inches(3), [
+add_multiline(slide, Inches(0.8), Inches(3.8), Inches(11.5), Inches(2.5), [
     ("Implicações pedagógicas geradas pela IA:", True, FGV_BLUE),
     "",
     "  1.  Reservar tempo para leitura e análise detalhada de enunciados",
     "  2.  Organizar oficinas de escrita formal de provas matemáticas",
     "  3.  Promover correções comentadas e devolutivas rápidas",
-    "",
-    ("→ Ver relatório completo: 04_desempenho_tarefa.pdf", False, FGV_LIGHT_BLUE),
 ], font_size=15)
+
+# Real clickable hyperlink
+add_hyperlink_textbox(slide, Inches(0.8), Inches(6.2), Inches(6), Inches(0.4),
+                      "→ Ver relatório completo: 04_desempenho_tarefa.pdf",
+                      REPORT_LINKS["04_desempenho_tarefa.pdf"], font_size=14)
 
 # Summary table slide
 slide = prs.slides.add_slide(prs.slide_layouts[6])
@@ -564,9 +598,10 @@ for i, (nivel, relatorio, desc, pdf) in enumerate(levels):
     # Description
     add_textbox(slide, Inches(6.8), y + Inches(0.05), Inches(4), Inches(0.6),
                 desc, font_size=14, color=FGV_MED_GRAY)
-    # PDF link
-    add_textbox(slide, Inches(11), y + Inches(0.05), Inches(1.8), Inches(0.6),
-                f"📎 {pdf[:15]}...", font_size=10, color=FGV_LIGHT_BLUE)
+    # PDF link — real clickable hyperlink
+    add_hyperlink_textbox(slide, Inches(11), y + Inches(0.05), Inches(2), Inches(0.6),
+                          f"📎 Abrir PDF", REPORT_LINKS.get(pdf, "#"),
+                          font_size=11)
 
 add_textbox(slide, Inches(0.8), Inches(6.6), Inches(11), Inches(0.5),
             "Tudo gerado automaticamente. O professor clica um botão e recebe narrativas pedagógicas reais.",
